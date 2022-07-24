@@ -9,13 +9,13 @@
 
     <form action="/words" method="post">
         {% csrf_token %}
-        {% for nationality in nationalities %}
-        <button type="submit"  name="choice" value="{{ nationality }}">{{ nationality }}</button>
+        {% for answer in answers %}
+        <button type="submit"  name="choice" value="{{ answer }}">{{ answer }}</button>
         {% endfor %}
         <p>Your answer is {{ is_correct }}</p>
     </form>
 
-    <p>Countries left: {{ countries_left }}/{{ countries_count }}</p>
+    <!-- <p>Countries left: {{ countries_left }}/{{ countries_count }}</p> -->
 
 </body>
 </html>
