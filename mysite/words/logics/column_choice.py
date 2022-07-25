@@ -29,7 +29,7 @@ class ColumnChoice:
         return getattr(self.current_row, self.answer_column_name)
 
     def extract_current_row(self):
-        self.current_row = self.remained_rows.pop(random.randrange(self.rows_left))
+        self.current_row = self.remained_rows.pop(random.randrange(self.get_number_of_remained_rows()))
 
     def get_current_base_item(self):
         '''Возвращает название страны, основываясь на base_col'''
@@ -50,4 +50,4 @@ class ColumnChoice:
 
     def get_number_of_remained_rows(self):
         '''Возвращает количество оставшихся вопросов'''
-        pass
+        return len(self.remained_rows)

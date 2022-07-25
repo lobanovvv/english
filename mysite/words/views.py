@@ -17,9 +17,6 @@ nationalities = None
 def index(request):
     global nationalities
 
-# TODO: Валится на случайном количестве ответов, нужно доделать счетчики всего и осталось ответов и
-#           посмотреть что они покажут
-
     if request.POST:
         print('=============== POST WAY')
         if request.POST.get('choice', '') == nationalities.correct_answer:
@@ -35,44 +32,13 @@ def index(request):
                                             filter={"oxford_chapter":"A2U1"})
         answers = nationalities.get_shuffled_answers()
 
-    # # ----------
-    # if not countries_list:
-    #     countries_list = list(Countries.objects.filter(oxford_chapter='A2U1'))
-    # # ----------
-    # answers_list = list(Countries.objects.values('nationalities'))
-
-    # # COUNTER
-    # # Countdown counter
-    # # -----------
-    # countries_left = len(countries_list)
-    # # Count of countries in db
-    # # -----------
-    # countries_count = len(list(Countries.objects.filter(oxford_chapter='A2U1')))
-
-    # # GET COUNTRY
-    # # Get one country information and del it from list
-    # # ---------
-    # country_info = countries_list.pop(random.randrange(countries_left))
-    # # Record country name to global variable for comparison later with customer answer
-    # correct_answer = country_info.nationalities
-
-    # # ANSWERS NATIONALITIES
-    # # Add correct answer
-    # answers.append(str(country_info.nationalities))
-    # # Add random answers
-    # # ------------
-    # random_numbers = random.sample(range(countries_count), 3)
-    # for num in random_numbers:
-    #     answers.append(answers_list.pop(num)['nationalities'])
-    # # Shuffle all answers
-    # random.shuffle(answers)
-
+    
     template = loader.get_template('words/index.html')
     context = {
         'country_info': nationalities.current_row,
         'answers': nationalities.get_shuffled_answers(),
-        # 'countries_left': countries_left,
-        # 'countries_count': countries_count,
+        'countries_left': nationalities.get_number_of_remained_rows(),
+        'countries_count': nationalities.count_of_all_rows,
         'is_correct': nationalities.is_correct,
     }
     return HttpResponse(template.render(context, request))
