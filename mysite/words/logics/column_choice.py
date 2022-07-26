@@ -33,7 +33,7 @@ class ColumnChoice:
         number_of_remained_rows = self.get_number_of_remained_rows()
         self.current_row = self.remained_rows.pop(random.randrange(number_of_remained_rows))
 
-        Audio.create_start_sound(text = getattr(self.current_row, self.base_column_name))
+        Audio.create_sound(text = getattr(self.current_row, self.base_column_name), file_name='start_sound.mp3')
 
     def get_current_base_item(self):
         '''Возвращает название страны, основываясь на base_col'''

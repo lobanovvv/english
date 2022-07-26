@@ -1,4 +1,5 @@
 import os.path
+from playsound import playsound
 
 from django.http import HttpResponse
 from django.template import loader
@@ -27,8 +28,8 @@ def index(request):
             nationalities = ColumnChoice(base_column_name='country',
                                          answer_column_name='nationalities',
                                          filter={"oxford_chapter": "A2U1"})
-        Audio.create_answer_sound(nationalities.correct_answer)
-        Audio.play_audio(os.path.join(BASE_DIR, "static", "sounds", "answer_sound.mp3"))
+        Audio.create_sound(text=nationalities.correct_answer, file_name='answer_sound.mp3')
+        Audio.play_audio(os.path.join("static", "sounds", "answer_sound.mp3"))
     else:
         nationalities = ColumnChoice(base_column_name='country',
                                      answer_column_name='nationalities',
