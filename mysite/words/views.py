@@ -1,11 +1,12 @@
-from django.shortcuts import render
+import os.path
+
 from django.http import HttpResponse
 from django.template import loader
 
-from playsound import playsound
 
-from words.logics.audio import Audio
+from .logics.audio import Audio
 from .logics.column_choice import ColumnChoice
+from mysite.settings import BASE_DIR
 
 
 nationalities = None
@@ -23,17 +24,16 @@ def index(request):
         try:
             nationalities.extract_current_row()
         except ValueError:
-            nationalities = ColumnChoice(base_column_name='country', 
-                                            answer_column_name='nationalities',
-                                            filter={"oxford_chapter":"A2U1"})
+            nationalities = ColumnChoice(base_column_name='country',
+                                         answer_column_name='nationalities',
+                                         filter={"oxford_chapter": "A2U1"})
         Audio.create_answer_sound(nationalities.correct_answer)
-        playsound('static/sounds/answer_sound.mp3')
+        Audio.play_audio(os.path.join(BASE_DIR, "static", "sounds", "answer_sound.mp3"))
     else:
-        nationalities = ColumnChoice(base_column_name='country', 
-                                            answer_column_name='nationalities',
-                                            filter={"oxford_chapter":"A2U1"})
+        nationalities = ColumnChoice(base_column_name='country',
+                                     answer_column_name='nationalities',
+                                     filter={"oxford_chapter": "A2U1"})
 
-    
     template = loader.get_template('words/index.html')
     context = {
         'country_info': nationalities.current_row,
