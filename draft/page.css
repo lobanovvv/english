@@ -1,11 +1,43 @@
-.in {
-background-color: green;
-width: 336px;
-height: 69px;
+#high_frequencies {
+  background-color: #0000FF;
+}
+
+#almost {
+  background-color: #0000DD;
+}
+
+#fifty_fifty {
+  background-color: #0000BB;
+}
+
+#rarely {
+  background-color: #000099;
+}
+
+#low_frequencies {
+  background-color: #000066;
+}
+
+/* GRID */
+.grid-container {
+  display: grid;
+  grid-template-columns: auto 25% 25% 25% auto;
+  grid-template-rows: 65px 300px;
+  background-color: #2196F3;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 20px;
+  text-align: center;
 }
 
 .out {
-background-color: red;
-width: 136px;
-height: 33px;
+  width: 122px;
+  height: 20px;
+  background-color: red;
+  border: 1px solid black;
+  border-radius: 3px;
 }

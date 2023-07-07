@@ -21,7 +21,20 @@
     </script>
 </head>
 <body>
-<div id="div1" class="in" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div class="in grid-container" id="wrapper" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div class="grid-item" id="high_frequencies">High</div>
+    <div class="grid-item" id="almost"></div>
+    <div class="grid-item" id="fifty_fifty">50/50</div>
+    <div class="grid-item" id="rarely"></div>
+    <div class="grid-item" id="low_frequencies">Low</div>
+    <div class="grid-item" ></div>
+    <div class="grid-item" ></div>
+    <div class="grid-item" ></div>
+    <div class="grid-item" ></div>
+    <div class="grid-item" ></div>
+</div>
 
-<div id="drag1" class="out" draggable="true" ondragstart="drag(event)"></div>
+<div id="drag1" class="out" draggable="true" ondragstart="drag(event)">1</div>
+<div id="drag2" class="out" draggable="true" ondragstart="drag(event)">2</div>
+<div id="drag3" class="out" draggable="true" ondragstart="drag(event)">3</div>
 </body>
