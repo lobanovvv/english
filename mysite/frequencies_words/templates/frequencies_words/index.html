@@ -1,5 +1,47 @@
-<ul>
-    {% for word in words %}
-        <li>{{ word }}</li>
-    {% endfor %}
-</ul>
+{% load static %}
+
+</body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Frequencies words</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <script type="text/javascript">
+        function allowDrop(ev) {
+          ev.preventDefault();
+        }
+
+        function drag(ev) {
+          ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+          ev.preventDefault();
+          var data = ev.dataTransfer.getData("text");
+          ev.target.appendChild(document.getElementById(data));
+        }
+    </script>
+</head>
+<body>
+    <h1>Frequencies words</h1>
+<div class="in grid-container" id="wrapper">
+    <div class="grid-item percent100" id="high_frequencies">High</div>
+    <div class="grid-item percent75" id="almost"></div>
+    <div class="grid-item percent50" id="fifty_fifty">50/50</div>
+    <div class="grid-item percent25" id="rarely"></div>
+    <div class="grid-item percent0" id="low_frequencies">Low</div>
+    <div class="grid-item percent100" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div class="grid-item percent75" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div class="grid-item percent50" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div class="grid-item percent25" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div class="grid-item percent0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+</div>
+
+{% for word in words %}
+    <div id="drag{{forloop.counter}}" class="items" draggable="true" ondragstart="drag(event)">{{ word }}</div>
+{% endfor %}
+
+<button type="button"></button>
+</body>

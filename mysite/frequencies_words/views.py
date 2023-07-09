@@ -1,3 +1,5 @@
+import random
+
 from django.http import HttpResponse
 from django.template import loader
 
@@ -9,6 +11,8 @@ def index(request):
     words = []
     for item in fw.objects.all():
         words.append(item.name)
+
+    random.shuffle(words)
 
     context = {
         "words": words,
