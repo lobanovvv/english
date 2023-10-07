@@ -20,5 +20,6 @@ urlpatterns = [
     path('', include('root.urls')),
     path('admin/', admin.site.urls),
     path('words', include('words.urls', namespace='words')),
+    path('words2', include('words2.urls', namespace='words2')),
     path('frequencies_words', include('frequencies_words.urls', namespace='frequencies_words')),
 ]

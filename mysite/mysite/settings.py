@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'words.apps.WordsConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'frequencies_words',
-    'root'
+    'root',
+    'words.apps.WordsConfig',
+    'words2.apps.WordsConfig',
+
 ]
 
 MIDDLEWARE = [
